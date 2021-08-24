@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+h1, h2, h3, h4, h5, h6, p, a, button {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  font-variant: small-caps;
+  text-align: center;
+}
