@@ -7,7 +7,11 @@ export default function ItemListContainer() {
     const [ products, setProducts ] = useState([]);
 
     const [ loading, setLoading ] = useState(false);
-    
+
+    const onAdd = (producto) => {
+        console.log("agregaron un producto", producto);
+    };
+
     useEffect(() => {
         new Promise((resolve, reject) => {
             setLoading(true)
