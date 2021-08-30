@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import { Carousel } from "react-bootstrap";
+import Cart from "./components/Cart";
 
 export default function App() {
   return (
@@ -35,6 +36,9 @@ export default function App() {
         </Route>
         <Route exact path="/Item/:id">
           <ItemDetailContainer />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
         </Route>
       </Switch>
     </BrowserRouter>
