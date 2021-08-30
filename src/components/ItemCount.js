@@ -20,8 +20,8 @@ export default function ItemCount({ stock, initial, onAdd, items }) {
     return (
         <>
             <h2>Productos en el carrito: {items}</h2>
-            <Button onClick={sumar}> Sumar + </Button>
-            <Button onClick={restar}> Restar - </Button>
+            <Button onClick={sumar}> Agregar al carrito + </Button>
+            <Button onClick={restar}> Quitar del carrito - </Button>
         </>
     )
 }
