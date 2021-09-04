@@ -1,32 +1,48 @@
 import { Card, Container, Button } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import CartContext from "../Context/CartContext";
 
-function ItemDetail(props) {
-
+function ItemDetail({id, tipoDeProducto, modelo, precio, stock, imagen}) {
+    
     const [ items, setItems ] = useState(0);
-    console.log('Items', items)
+
+    const {carrito, productos} = useContext(CartContext);
+    console.log(carrito, productos);
+
+    // const [arrayDeProductos, setArrayDeProductos] = useState([]);
+
+    const addItem = () => {
+        carrito.cantidad = {items};
+        carrito.push(productos)
+        console.log(carrito)
+        const newArray = new Set(carrito);
+        console.log(newArray)
+        window.localStorage.setItem("carrito", JSON.stringify([...newArray]));
+    }
 
     return (
-        <section className="mb-md-4 mt-md-4 pb-md-4 pt-md-4">
-            <Container>
-                <div className="row d-flex">
-                    <Card border="primary" className="bg-light">
-                        <Card.Img src={props.imagen} alt="{props.tipoDeProducto} {props.modelo}" />
-                        <Card.Title style={{textAlign:"center"}}>{props.tipoDeProducto} {props.modelo}</Card.Title>
-                        <Card.Text style={{textAlign:"center"}}>
-                            Precio: ${props.precio}
-                        </Card.Text>
-                        <Card.Text style={{textAlign:"scenter"}}>
-                            Stock disponible: {props.stock}
-                        </Card.Text>
-                        <ItemCount stock={props.stock} initial={1} onAdd={setItems} items={items} />
-                        {items > 0 && <Button><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
-                    </Card>
-                </div>
-            </Container>
-        </section>
+            <section className="mb-md-4 mt-md-4 pb-md-4 pt-md-4">
+                <Container>
+                    <div className="row d-flex">
+                        {value => <h1>{value}</h1>}
+                        <Card border="primary" className="bg-light">
+                            <Card.Img src={imagen} alt="{props.tipoDeProducto} {props.modelo}" />
+                            <Card.Title style={{textAlign:"center"}}>{tipoDeProducto} {modelo}</Card.Title>
+                            <Card.Text style={{textAlign:"center"}}>
+                                Precio: ${precio}
+                            </Card.Text>
+                            <Card.Text style={{textAlign:"scenter"}}>
+                                Stock disponible: {stock}
+                            </Card.Text>
+                            <ItemCount stock={stock} initial={1} onAdd={setItems} items={items}/>
+                            <button onClick={addItem}>a</button>
+                            {items > 0 && <Button><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
+                        </Card>
+                    </div>
+                </Container>
+            </section>
     )
 }
 

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from 'react-bootstrap'; 
 
 export default function ItemCount({ stock, initial, onAdd, items }) {
-    
-    // const [ count, setCount ] = useState(initial);
     
     const sumar = () => {
         if (items < stock) {

@@ -1,4 +1,4 @@
-export const productosJSON = [
+const productosJSON = [
         {
         id: "1",
         tipoDeProducto: "Taza",
@@ -112,3 +112,5 @@ export const productosJSON = [
         imagen: "https://www.futbolfemeninoargentino.com.ar/img/Taza-Larroquette.jpg"
         }
 ]
+
+export default productosJSON;

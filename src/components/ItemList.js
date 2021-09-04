@@ -8,7 +8,7 @@ function ItemList({ products, onAdd }) {
         <Container fluid>
             {products.map((item => (
                 <Row>
-                    <Item {...item} onAdd={onAdd}/>
+                    <Item {...item} key={item.id} onAdd={onAdd}/>
                 </Row>
             )))}
         </Container>

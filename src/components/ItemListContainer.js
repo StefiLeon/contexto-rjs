@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { productosJSON } from './productos.json';
+import productosJSON from './productos.json';
 import ItemList from './ItemList';
 
 export default function ItemListContainer() {
