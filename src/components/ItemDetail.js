@@ -37,8 +37,7 @@ function ItemDetail({id, tipoDeProducto, modelo, precio, stock, imagen}) {
                                 Stock disponible: {stock}
                             </Card.Text>
                             <ItemCount stock={stock} initial={1} onAdd={setItems} items={items}/>
-                            <button onClick={addItem}>a</button>
-                            {items > 0 && <Button><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
+                            {items > 0 && <Button onClick={addItem}><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
                         </Card>
                     </div>
                 </Container>
