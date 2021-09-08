@@ -1,34 +1,42 @@
 import { createContext, useState } from "react";
 
-//Paso 1: creacion de un contexto simple vacio
-const CartContext = createContext([]);
+const chequearItemCantidad = (productos, producto) => {
+    const productoEncontrado = productos.find(item => item.id === producto.id);
+    if (productoEncontrado) {
+        productoEncontrado.count++;
+    } else {
+        productos.push({
+            ...producto,
+            count: 1
+        });
+    };
+    return productos;
+};
 
-export function CartContextProvider({children}) {
 
-    const [productos, setProductos] = useState([]);
+const CartContext = createContext({});
+
+export const CartContextProvider = ({ children }) => {
 
     const [carrito, setCarrito] = useState([]);
 
-    function addItem(productos) {
-        const nuevoArray = [...carrito];
-        nuevoArray.push(productos);
-        setCarrito(nuevoArray);
-    }
+    const addItem = (producto) => {
+        const carritoBorrador = [{...carrito}];
+        const cleanCarrito = chequearItemCantidad(carritoBorrador, producto)
+        setCarrito(cleanCarrito);
+        console.log(cleanCarrito);
+    };
 
-    function handleRemove(id) {
-        const nuevoArray = carrito.filter((item) => item.id !== id);
-        setCarrito(nuevoArray);
-    }
+    const removeItem = (itemID) => {
+        const carritoBorrador = [{...carrito}];
+        const cleanCarrito = carritoBorrador.filter(producto => producto.id !== itemID);
+        setCarrito(cleanCarrito);
+    };
 
-    function clear(){
-        const nuevoArray = [...carrito];
-        nuevoArray.length = 0;
-        setCarrito(nuevoArray);
-    }
-
-    return <CartContext.Provider value={{ productos, setProductos, carrito, setCarrito }}>
+    return (<CartContext.Provider value={{ carrito, addItem }}>
         {children}
     </CartContext.Provider>
-}
+    );
+};
 
 export default CartContext;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function Item(props) {
 
@@ -14,7 +14,7 @@ function Item(props) {
                 <Card.Text>
                     Stock disponible: {props.stock}
                 </Card.Text>
-                <Card.Text><Link to={`/item/${props.id}`}>Ver más</Link></Card.Text>
+                <Card.Text><Link to={`/item/${props.id}`}>Ver detalle</Link></Card.Text>
             </Card.ImgOverlay>
         </Card>
     )

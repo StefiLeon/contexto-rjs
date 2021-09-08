@@ -1,25 +1,16 @@
 import { Card, Container, Button } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import CartContext from "../Context/CartContext";
 
-function ItemDetail({id, tipoDeProducto, modelo, precio, stock, imagen}) {
+function ItemDetail({producto}) {
     
     const [ items, setItems ] = useState(0);
+    const { addItem } = useContext(CartContext);
 
-    const {carrito, productos} = useContext(CartContext);
-    console.log(carrito, productos);
-
-    // const [arrayDeProductos, setArrayDeProductos] = useState([]);
-
-    const addItem = () => {
-        carrito.cantidad = {items};
-        carrito.push(productos)
-        console.log(carrito)
-        const newArray = new Set(carrito);
-        console.log(newArray)
-        window.localStorage.setItem("carrito", JSON.stringify([...newArray]));
+    const handleClick = ({producto}) => {
+        addItem({producto});
     }
 
     return (
@@ -28,16 +19,17 @@ function ItemDetail({id, tipoDeProducto, modelo, precio, stock, imagen}) {
                     <div className="row d-flex">
                         {value => <h1>{value}</h1>}
                         <Card border="primary" className="bg-light">
-                            <Card.Img src={imagen} alt="{props.tipoDeProducto} {props.modelo}" />
-                            <Card.Title style={{textAlign:"center"}}>{tipoDeProducto} {modelo}</Card.Title>
+                            <Card.Img src={producto.imagen} alt="{props.tipoDeProducto} {props.modelo}" />
+                            <Card.Title style={{textAlign:"center"}}>{producto.tipoDeProducto} {producto.modelo}</Card.Title>
                             <Card.Text style={{textAlign:"center"}}>
-                                Precio: ${precio}
+                                Precio: ${producto.precio}
                             </Card.Text>
-                            <Card.Text style={{textAlign:"scenter"}}>
-                                Stock disponible: {stock}
+                            <Card.Text style={{textAlign:"center"}}>
+                                Stock disponible: {producto.stock}
                             </Card.Text>
-                            <ItemCount stock={stock} initial={1} onAdd={setItems} items={items}/>
-                            {items > 0 && <Button onClick={addItem}><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
+                            <ItemCount stock={producto.stock} initial={1} onAdd={setItems} items={items}/>
+                            <button onClick={handleClick}>a</button>
+                            {items > 0 && <Button><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
                         </Card>
                     </div>
                 </Container>
