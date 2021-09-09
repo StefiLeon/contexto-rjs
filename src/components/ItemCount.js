@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from 'react-bootstrap'; 
+import CartContext from "../Context/CartContext";
 
 export default function ItemCount({ stock, initial, onAdd, items }) {
+
+    const { addItem, removeItem, array } = useContext(CartContext);
     
     const sumar = () => {
         if (items < stock) {
             onAdd(items + 1);
         }
+        addItem(array);
     };
 
     const restar = () => {
         if (items > 0) {
             onAdd(items - 1);
         }
+        removeItem(array);
     };
 
     return (

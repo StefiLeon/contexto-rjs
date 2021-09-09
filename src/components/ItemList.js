@@ -12,7 +12,7 @@ function ItemList({ onAdd }) {
         <Container fluid>
             {productos.map((item => (
                 <Row>
-                    <Item {...item} key={item.id} onAdd={onAdd}/>
+                    <Item {...item} key={item.id.modelo} onAdd={onAdd}/>
                 </Row>
             )))}
         </Container>

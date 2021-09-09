@@ -11,7 +11,7 @@ export default function ItemListContainer() {
     useEffect(() => {
         new Promise((resolve, reject) => {
             setLoading(true)
-            setTimeout(() => resolve(productos), 3000)
+            setTimeout(() => resolve(productos), 1000)
         }).then(data => setProductos(data))
         .finally(() => {
             setLoading(false)

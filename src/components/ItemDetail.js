@@ -1,17 +1,11 @@
 import { Card, Container, Button } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-import { useContext, useState } from 'react';
-import CartContext from "../Context/CartContext";
+import { useState } from 'react';
 
 function ItemDetail({producto}) {
-    
-    const [ items, setItems ] = useState(0);
-    const { addItem } = useContext(CartContext);
 
-    const handleClick = ({producto}) => {
-        addItem({producto});
-    }
+    const [ items, setItems ] = useState(0);
 
     return (
             <section className="mb-md-4 mt-md-4 pb-md-4 pt-md-4">
@@ -28,7 +22,6 @@ function ItemDetail({producto}) {
                                 Stock disponible: {producto.stock}
                             </Card.Text>
                             <ItemCount stock={producto.stock} initial={1} onAdd={setItems} items={items}/>
-                            <button onClick={handleClick}>a</button>
                             {items > 0 && <Button><Link to="/cart" style={{color:"white"}}>Terminar compra</Link></Button>}
                         </Card>
                     </div>
