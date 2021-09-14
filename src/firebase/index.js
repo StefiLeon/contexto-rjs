@@ -19,3 +19,4 @@ const app = initializeApp(firebaseConfig);
 
 //GetData: devuelve conexion con Firestore a mi app
 export const getData = () => getFirestore(app);
+export const db = getFirestore(app);

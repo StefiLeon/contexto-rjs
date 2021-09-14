@@ -3,6 +3,8 @@ import CartContext from "../Context/CartContext";
 import { Button, Form } from 'react-bootstrap';
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { db } from "../firebase/index";
 
 
 const CarritoF = () => {   
@@ -10,9 +12,50 @@ const CarritoF = () => {
 
     const [ items, setItems ] = useState(0);
 
-    const handleCompra = (e) => {
+    const getTotal = (carrito) => {
+        let total = 0;
+        carrito.forEach(item => {
+            total += item.precio * item.count
+        })
+        console.log(total)
+        return total;
+    }
+
+    const [ nombre, setNombre ] = useState('');
+    const [ mail, setMail ] = useState('');
+    const [ telefono, setTelefono ] = useState('');
+
+    function onNombreChange(evt) {
+        setNombre(evt.target.value);
+    }
+
+    function onMailChange(evt) {
+        setMail(evt.target.value);
+    }
+
+    function onTelefonoChange(evt) {
+        setTelefono(evt.target.value);
+    }
+
+    const buyerInfo = {
+        nombre: nombre,
+        mail: mail,
+        telefono: telefono
+    }
+
+    const [ loading, setLoading ] = useState(false);
+
+    const handleCompra = async(e) => {
         e.preventDefault();
-        console.log("fin de la compra");
+        const docRef = await addDoc(collection(db, "orders"), {
+            buyer: buyerInfo,
+            items: carrito,
+            date: Timestamp.fromDate(new Date()),
+            total: getTotal(carrito),
+        });
+        console.log(docRef)
+        setLoading(true);
+        removeAllItems();
     }
 
     return (
@@ -31,20 +74,20 @@ const CarritoF = () => {
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Nombre y apellido</Form.Label>
-                    <Form.Control type="textarea" placeholder="Ingresá tu nombre" />
+                    <Form.Control type="textarea" placeholder="Ingresá tu nombre" onChange={evt => onNombreChange(evt)} />
                     <Form.Text className="text-muted">
                     Nunca compartiremos tu información.
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email de contacto</Form.Label>
-                    <Form.Control type="mail" placeholder="Ingresá tu mail" />
+                    <Form.Control type="mail" placeholder="Ingresá tu mail" onChange={evt => onMailChange(evt)}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPhone">
                     <Form.Label>Teléfono</Form.Label>
-                    <Form.Control type="phone" placeholder="Ingresá tu teléfono" />
+                    <Form.Control type="phone" placeholder="Ingresá tu teléfono" onChange={evt => onTelefonoChange(evt)}/>
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleCompra}>
+                <Button variant="primary" type="textarea" onClick={handleCompra}>
                     Terminar la compra
                 </Button>
             </Form>
@@ -54,34 +97,11 @@ const CarritoF = () => {
             <h3>Carrito vacio</h3>
             <Button><Link to="/" style={{color:"white"}}>Ver productos</Link></Button>
             </>}
+            {loading === true && <>
+            <h3>¡Gracias por tu compra!</h3>            
+            </>}
             </div>
     );
 };
 
 export default CarritoF;
-
-// function Carrito() {
-//     const [show, setShow] = useState(false);
-
-//     const handleClose = () => setShow(false);
-//     const handleShow = () => setShow(true);
-
-//     return (
-//         <>
-//             <Button variant="primary" onClick={handleShow}>
-//             Ver carrito
-//             </Button>
-//             <Offcanvas show={show} onHide={handleClose}>
-//                 <Offcanvas.Header closeButton>
-//                     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-//                 </Offcanvas.Header>
-//                 <Offcanvas.Body>
-//                     Some text as placeholder. In real life you can have the elements you
-//                     have chosen. Like, text, images, lists, etc.
-//                 </Offcanvas.Body>
-//             </Offcanvas>
-//         </>
-//     );
-// }
-
-// export default Carrito;
