@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/StefiLeon/contexto-rjs/static/css/main.182c5971.chunk.css",
+    "main.js": "/StefiLeon/contexto-rjs/static/js/main.e7d88ad1.chunk.js",
+    "main.js.map": "/StefiLeon/contexto-rjs/static/js/main.e7d88ad1.chunk.js.map",
+    "runtime-main.js": "/StefiLeon/contexto-rjs/static/js/runtime-main.bc8b4725.js",
+    "runtime-main.js.map": "/StefiLeon/contexto-rjs/static/js/runtime-main.bc8b4725.js.map",
+    "static/css/2.818011ed.chunk.css": "/StefiLeon/contexto-rjs/static/css/2.818011ed.chunk.css",
+    "static/js/2.514ecc22.chunk.js": "/StefiLeon/contexto-rjs/static/js/2.514ecc22.chunk.js",
+    "static/js/2.514ecc22.chunk.js.map": "/StefiLeon/contexto-rjs/static/js/2.514ecc22.chunk.js.map",
+    "index.html": "/StefiLeon/contexto-rjs/index.html",
+    "static/css/2.818011ed.chunk.css.map": "/StefiLeon/contexto-rjs/static/css/2.818011ed.chunk.css.map",
+    "static/css/main.182c5971.chunk.css.map": "/StefiLeon/contexto-rjs/static/css/main.182c5971.chunk.css.map",
+    "static/js/2.514ecc22.chunk.js.LICENSE.txt": "/StefiLeon/contexto-rjs/static/js/2.514ecc22.chunk.js.LICENSE.txt",
+    "static/media/logo.c56b7bb2.svg": "/StefiLeon/contexto-rjs/static/media/logo.c56b7bb2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc8b4725.js",
+    "static/css/2.818011ed.chunk.css",
+    "static/js/2.514ecc22.chunk.js",
+    "static/css/main.182c5971.chunk.css",
+    "static/js/main.e7d88ad1.chunk.js"
+  ]
+}
