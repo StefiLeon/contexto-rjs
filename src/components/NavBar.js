@@ -1,10 +1,18 @@
-import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
-import CartWidget from './CartWidget';
+import CartWidget from './Cart/CartWidget';
 import logo from '../logo.svg';
-import {Link} from 'react-router-dom';
+import NavCategory from "./Item List/ItemCat";
+import productoContext from '../Context/ProductContext';
+
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+
 import '../App.css';
 
 function NavBar() {
+
+    const { categoria } = useContext(productoContext);
+
     return (
         <div>
             <Navbar fixed="top" bg="primary" variant="dark">
@@ -24,9 +32,9 @@ function NavBar() {
                             <Nav className="me-auto">
                                 <Nav.Link><Link style={{color:"whitesmoke", textDecoration:"none"}} to="/">Inicio</Link></Nav.Link>
                                 <NavDropdown title="Productos" id="basic-nav-dropdown">
-                                    <NavDropdown.Item><Link to={`/category/:id`}>Tazas</Link></NavDropdown.Item>
-                                    <NavDropdown.Item><Link to="/category/:id">Cuadros</Link></NavDropdown.Item>
-                                    <NavDropdown.Item><Link to="/category/:id">Rompecabezas</Link></NavDropdown.Item>
+                                    {categoria.map((cat => (
+                                        <NavCategory {...cat} key={cat.name} />
+                                    )))}
                                 </NavDropdown>
                                 <CartWidget />
                             </Nav>

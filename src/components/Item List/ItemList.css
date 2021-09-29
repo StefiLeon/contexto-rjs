@@ -1,0 +1,21 @@
+@media screen and (max-width: 480px) {
+    .bootstrap-card {
+        height: 50rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bootstrap-card {
+        height: 30rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .bootstrap-card {
+        height: 20rem;
+    }
+}
+
+.bootstrap-card {
+    height: 30rem;
+}

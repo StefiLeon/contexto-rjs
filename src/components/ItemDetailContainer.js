@@ -21,8 +21,8 @@ export default function ItemDetailContainer() {
         }).then((data) => setArray(data[0]))
         .finally(() => {
             setLoading(false)
-        })
-    }, [])
+        }) 
+    }, [id, productos, setArray])
 
-    return loading ? <><h2>¡Aguantá la pelota!</h2><img src="https://resizer.glanacion.com/resizer/KdKdIppd9jmMr2uAXlwujMAkqCw=/768x0/filters:quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/QXXCYXRVRVDXPAKWVRYGR2KAWU.jpg" /></> : <ItemDetail producto={array} />
+    return loading ? <><h2>¡Aguantá la pelota!</h2> <img src="https://resizer.glanacion.com/resizer/KdKdIppd9jmMr2uAXlwujMAkqCw=/768x0/filters:quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/QXXCYXRVRVDXPAKWVRYGR2KAWU.jpg" alt="Imagen Dalila Ippolito" /></> : <ItemDetail producto={array} />
 }

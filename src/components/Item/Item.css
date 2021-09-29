@@ -1,0 +1,23 @@
+@media screen and (max-width: 480px) {
+    .imagenCard {
+        height: 35rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .imagenCard {
+        height: 35rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .imagenCard {
+        height: 10rem;
+    }
+}
+
+.imagenCard {
+    object-fit: cover;
+    object-position: center;
+    height: 20rem;
+}

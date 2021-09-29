@@ -1,9 +1,13 @@
 import { createContext, useState } from "react";
 
+//Evitar duplicados
 const chequearItemCantidad = (carritoBorrador, producto) => {
     const productoEncontrado = carritoBorrador.find(item => item.id === producto.id);
     if (productoEncontrado) {
         productoEncontrado.count++;
+        if (productoEncontrado.count > producto.stock) {
+            productoEncontrado.count--;
+        }
     } else {
         carritoBorrador.push({
             ...producto,
@@ -13,17 +17,20 @@ const chequearItemCantidad = (carritoBorrador, producto) => {
     return carritoBorrador;
 };
 
+//Borrar item del carrito
 const borrarItem = (carritoBorrador, producto) => {
     const productoEncontrado = carritoBorrador.find(item => item.id === producto.id);
     if (productoEncontrado.count > 0) {
         productoEncontrado.count--;
-        console.log(producto);
     } else {
-        carritoBorrador.shift();
+        carritoBorrador = carritoBorrador.filter(function(value, index, arr){
+            return value !== productoEncontrado;
+        });
     }
     return carritoBorrador;
 };
 
+//Contexto de carrito
 const CartContext = createContext({});
 
 export const CartContextProvider = ({ children }) => {
@@ -36,14 +43,12 @@ export const CartContextProvider = ({ children }) => {
         const carritoBorrador = [...carrito];
         const cleanCarrito = chequearItemCantidad(carritoBorrador, item)
         setCarrito(cleanCarrito);
-        console.log("carrito", {carrito});
     };
 
     const removeItem = (item) => {
         const carritoBorrador = [...carrito];
         const cleanCarrito = borrarItem(carritoBorrador, item)
         setCarrito(cleanCarrito);
-        console.log("carrito", {carrito});
     };
 
     const removeAllItems = () => {

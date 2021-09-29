@@ -1,0 +1,19 @@
+.formulario {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
+.formulario Button {
+    height: 4rem;
+    align-self: center;
+}
+
+.carrito-vacio Button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 50%;
+    margin-left: 25%;
+}

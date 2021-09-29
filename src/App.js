@@ -3,13 +3,15 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Carousel } from "react-bootstrap";
 import { CartContextProvider } from './Context/CartContext';
+import { ProductoContextProvider } from './Context/ProductContext';
 
 import './App.css';
 import NavBar from "./components/NavBar";
-import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
-import Cart from "./components/Cart";
-import { ProductoContextProvider } from './Context/ProductContext';
+import ItemListContainer from './components/Item List/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetail/ItemDetailContainer';
+import Cart from "./components/Cart/Cart";
+import ItemCategoryContainer from './components/Item List/ItemCategoryContainer';
+import PaginaDeError from './components/PaginaDeError';
 
 export default function App() {
 
@@ -37,8 +39,8 @@ export default function App() {
             <Route exact path="/">
               <ItemListContainer />
             </Route>
-            <Route exact path="/category/:id">
-              <ItemListContainer />
+            <Route exact path="/categories/:name">
+              <ItemCategoryContainer />
             </Route>
             <Route exact path="/Item/:id">
               <ItemDetailContainer />
@@ -46,6 +48,7 @@ export default function App() {
             <Route exact path="/cart">
               <Cart />
             </Route>
+            <Route component={PaginaDeError} />
           </Switch>
         </BrowserRouter>
       </CartContextProvider>
